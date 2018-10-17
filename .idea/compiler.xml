@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="apiCommand" />
+        <module name="apiQuery" />
+        <module name="cardComponent" />
+        <module name="modelLibrary" />
+        <module name="monitoringComponent" />
+        <module name="userComponent" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
