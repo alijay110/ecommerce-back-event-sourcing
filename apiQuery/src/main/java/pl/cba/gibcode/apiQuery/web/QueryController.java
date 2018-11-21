@@ -8,7 +8,7 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.cba.gibcode.apiQuery.model.KafkaMessage;
+import pl.cba.gibcode.modelLibrary.model.KafkaMessage;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -29,8 +29,10 @@ public class QueryController {
 		this.producer = producer;
 	}
 
+	//!!!!!!!!!!!!
+	//TODO !!!!!! get order status
 	@ApiOperation(
-			value = "Create a card as a seller",
+			value = "Test",
 			httpMethod = "POST")
 	@ApiResponses({
 			@ApiResponse(code = 200, message = "Card returned"),

@@ -14,8 +14,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.springframework.util.FileSystemUtils;
-import pl.cba.gibcode.apiQuery.config.CustomJsonSerde;
-import pl.cba.gibcode.apiQuery.model.KafkaMessage;
+import pl.cba.gibcode.modelLibrary.config.CustomJsonSerde;
+import pl.cba.gibcode.modelLibrary.model.KafkaMessage;
 
 import java.io.File;
 import java.util.Map;

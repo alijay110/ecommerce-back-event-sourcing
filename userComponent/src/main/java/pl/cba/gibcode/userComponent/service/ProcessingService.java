@@ -3,7 +3,7 @@ package pl.cba.gibcode.userComponent.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import pl.cba.gibcode.apiQuery.model.KafkaMessage;
+import pl.cba.gibcode.modelLibrary.model.KafkaMessage;
 import pl.cba.gibcode.userComponent.repositories.DummyRepository;
 
 @Service

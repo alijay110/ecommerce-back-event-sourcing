@@ -4,9 +4,9 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.cba.gibcode.apiQuery.config.CustomJsonSerde;
-import pl.cba.gibcode.apiQuery.config.KafkaConfig;
-import pl.cba.gibcode.apiQuery.model.KafkaMessage;
+import pl.cba.gibcode.modelLibrary.config.CustomJsonSerde;
+import pl.cba.gibcode.modelLibrary.config.KafkaConfig;
+import pl.cba.gibcode.modelLibrary.model.KafkaMessage;
 import pl.cba.gibcode.userComponent.service.ProcessingService;
 
 @Configuration

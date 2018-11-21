@@ -3,9 +3,9 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/apiCommand" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/apiQuery" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/cardComponent" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/modelLibrary" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/monitoringComponent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/orderComponent" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/userComponent" charset="UTF-8" />
   </component>
 </project>

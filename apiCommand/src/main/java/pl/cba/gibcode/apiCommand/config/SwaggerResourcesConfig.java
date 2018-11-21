@@ -21,7 +21,7 @@ public class SwaggerResourcesConfig {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("pl.cba.gibcode.apiQuery"))
+				.apis(RequestHandlerSelectors.basePackage("pl.cba.gibcode.apiCommand"))
 				.paths(PathSelectors.ant("/api/**"))
 				.build();
 

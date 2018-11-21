@@ -1,0 +1,16 @@
+package pl.cba.gibcode.modelLibrary.model;
+
+public enum EntityStateEnum {
+	BRAND_CREATED,
+	BRAND_UPDATED,
+	BRAND_DELETED,
+	CARD_CREATED,
+	CARD_UPDATED,
+	CARD_DELETED,
+	CARD_VALIDATED,
+	CARD_CHECKED_OUT,
+	CARD_PAID,
+	CARD_SENT,
+	UNKNOWN
+
+}
