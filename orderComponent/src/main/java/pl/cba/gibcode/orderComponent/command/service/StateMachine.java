@@ -24,7 +24,7 @@ public class StateMachine {
 		case CARD_PAID:
 			return List.of(SEND_CARD);
 		case CARD_CHECKED_OUT:
-			return List.of(CHECKOUT_CARD, PAY_CARD);
+			return List.of(PAY_CARD);
 		case CARD_UPDATED:
 			return List.of(UPDATE_CARD, VALIDATE_CARD, DELETE_CARD);
 		case CARD_CREATED:

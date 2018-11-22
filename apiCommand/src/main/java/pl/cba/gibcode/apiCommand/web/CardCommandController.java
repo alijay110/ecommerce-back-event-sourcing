@@ -36,7 +36,7 @@ public class CardCommandController {
 			@ApiResponse(code = 500, message = "Unknown error")
 	})
 	@PostMapping("seller/card")
-	public ResponseEntity<BasicCardBody> createCard(
+	public ResponseEntity<CreatedOrderUuidBody> createCard(
 			@RequestBody CreateCardBody dto,
 			@RequestParam String username) {
 		return ResponseEntity.status(HttpStatus.CREATED)

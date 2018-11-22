@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @ApiModel(value = "Header", description = "Contains meta information regarding the Event body element.")
-public interface Header {
+public interface Header extends BasicEntityFragment{
 
 	/**
 	 * @return uuid of the Order
@@ -25,9 +25,6 @@ public interface Header {
 	@NotNull
 	UUID getOrderUuid();
 
-	@ApiModelProperty(value = "uuid of the related entity card/brand", required = true)
-	@NotNull
-	String getEntityId();
 
 	@NotNull
 	Long getUserId();

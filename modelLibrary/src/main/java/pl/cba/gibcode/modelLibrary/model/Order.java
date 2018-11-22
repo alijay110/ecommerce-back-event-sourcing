@@ -32,4 +32,11 @@ public interface Order {
 	UUID getOrderUuid();
 
 	Optional<String> getErrorMessage();
+
+	Optional<Long> getSellerId();
+
+	Optional<Long> getBuyerId();
+
+	@NotNull
+	String getEntityId();
 }

@@ -27,13 +27,13 @@ public class BrandService implements OrderTypeSelector {
 	public CreatedOrderUuidBody updateBrand(UpdateBrandBody dto, Long userId) {
 		validatorService.validateBrand(dto.getBrandId());
 		var orderUuid = sendService.putOrder(dto.getBrandId(), dto, ActionEnum.UPDATE_BRAND, userId, getOrderType());
-		return ImmutableCreatedOrderUuidBody.builder().orderUuid(orderUuid).build();
+		return ImmutableCreatedOrderUuidBody.builder().orderUuid(orderUuid).entityId(dto.getBrandId()).build();
 	}
 
 	public CreatedOrderUuidBody deleteBrand(DeleteBrandBody dto, Long userId) {
 		validatorService.validateBrand(dto.getBrandId());
 		var orderUuid = sendService.putOrder(dto.getBrandId(), dto, ActionEnum.DELETE_BRAND, userId, getOrderType());
-		return ImmutableCreatedOrderUuidBody.builder().orderUuid(orderUuid).build();
+		return ImmutableCreatedOrderUuidBody.builder().orderUuid(orderUuid).entityId(dto.getBrandId()).build();
 	}
 
 	@Override public OrderType getOrderType() {

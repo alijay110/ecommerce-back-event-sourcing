@@ -12,4 +12,7 @@ import pl.cba.gibcode.modelLibrary.model.EntityFragment;
 @Value.Immutable
 public interface Card extends EntityFragment, BasicCardBodyFragment, CardDetailsBodyFragment {
 
+	Long getSellerId();
+
+	boolean getIsAvailable();
 }

@@ -8,6 +8,8 @@ import pl.cba.gibcode.modelLibrary.exceptions.BusinessException;
 
 import javax.inject.Provider;
 
+import static java.util.Objects.nonNull;
+
 @Service
 public class ValidatorService {
 
@@ -24,25 +26,20 @@ public class ValidatorService {
 
 	public void validateBrand(String entityId) {
 		Brand brand = brandStoreProvider.get().get(entityId);
-		if(brand == null) {
+		if(brand == null || brand.getDeleted()) {
 			throw new BusinessException(String.format("Brand not found with entityId %s", entityId));
 		}
 	}
 	public void validateCard(String entityId) {
 		Card card = cardStoreProvider.get().get(entityId);
-		if(card == null) {
-			throw new BusinessException(String.format("Brand not found with entityId %s", entityId));
+		if(card == null || card.getDeleted()) {
+			throw new BusinessException(String.format("Card not found with entityId %s", entityId));
 		}
 	}
 
 	public void validateNewBrandCreation(String entityId){
 		Brand brand = brandStoreProvider.get().get(entityId);
-		//if(nonNull(brand)) throw new BusinessException(String.format("Entity already found in Order with entityId %s", entityId));
+		if(nonNull(brand) && !brand.getDeleted()) throw new BusinessException(String.format("Brand already found in Order with entityId %s", entityId));
 	}
 
-	public void validateNewCardCreation(String entityId){
-		Card card = cardStoreProvider.get().get(entityId);
-		//if(nonNull(card)) throw new BusinessException(String.format("Entity already found in Order with entityId %s", entityId));
-
-	}
 }

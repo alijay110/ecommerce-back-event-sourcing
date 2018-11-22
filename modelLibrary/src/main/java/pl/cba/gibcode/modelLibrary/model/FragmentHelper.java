@@ -19,7 +19,8 @@ import pl.cba.gibcode.modelLibrary.card.CardDetailsBodyFragment;
 		BasicBrandBodyFragment.class,
 		EntityFragment.class,
 		BrandDetailsBodyFragment.class,
-		CardDetailsBodyFragment.class })
+		CardDetailsBodyFragment.class,
+		BasicEntityFragment.class})
 /**
  * Helper class to define immutable objects of the xxxFragments to generate an immutable object. This is because
  * @Value.Immutable cannot be set on xxxFragments since they are used to extend a body which is already defined as

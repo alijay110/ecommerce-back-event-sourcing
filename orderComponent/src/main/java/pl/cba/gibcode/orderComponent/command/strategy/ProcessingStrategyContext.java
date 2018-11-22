@@ -1,5 +1,6 @@
 package pl.cba.gibcode.orderComponent.command.strategy;
 
+import org.apache.kafka.common.network.Send;
 import org.springframework.stereotype.Component;
 import pl.cba.gibcode.modelLibrary.model.ActionEnum;
 import pl.cba.gibcode.modelLibrary.model.EntityFragment;
@@ -21,11 +22,25 @@ public class ProcessingStrategyContext {
 			CreateBrandProcessingStrategy createBrandProcessingStrategy,
 			DefaultProcessingStrategy defaultProcessingStrategy,
 			UpdateBrandProcessingStrategy updateBrandProcessingStrategy,
-			DeleteBrandProcessingStrategy deleteBrandProcessingStrategy) {
+			DeleteBrandProcessingStrategy deleteBrandProcessingStrategy,
+			CreateCardProcessingStrategy createCardProcessingStrategy,
+			UpdateCardProcessingStrategy updateCardProcessingStrategy,
+			DeleteCardProcessingStrategy deleteCardProcessingStrategy,
+			CheckoutCardProcessingStrategy checkoutCardProcessingStrategy,
+			PayCardProcessingStrategy payCardProcessingStrategy,
+			SendCardProcessingStrategy sendCardProcessingStrategy,
+			ValidateCardProcessingStrategy validateCardProcessingStrategy) {
 		this.defaultProcessingStrategy = defaultProcessingStrategy;
 		strategies.put(createBrandProcessingStrategy.getAction(), createBrandProcessingStrategy);
 		strategies.put(updateBrandProcessingStrategy.getAction(), updateBrandProcessingStrategy);
 		strategies.put(deleteBrandProcessingStrategy.getAction(), deleteBrandProcessingStrategy);
+		strategies.put(createCardProcessingStrategy.getAction(), createCardProcessingStrategy);
+		strategies.put(updateCardProcessingStrategy.getAction(), updateCardProcessingStrategy);
+		strategies.put(deleteCardProcessingStrategy.getAction(), deleteCardProcessingStrategy);
+		strategies.put(checkoutCardProcessingStrategy.getAction(), checkoutCardProcessingStrategy);
+		strategies.put(payCardProcessingStrategy.getAction(), payCardProcessingStrategy);
+		strategies.put(sendCardProcessingStrategy.getAction(), sendCardProcessingStrategy);
+		strategies.put(validateCardProcessingStrategy.getAction(), validateCardProcessingStrategy);
 	}
 
 	public ProcessingWrapper createNewEntity(OrderComponentEvent event) {

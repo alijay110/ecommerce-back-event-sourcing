@@ -98,10 +98,11 @@ public class StreamingConfig  extends KafkaConfig {
 			//1. check timestamp
 
 			var processingWrapper = new ProcessingWrapper();
-
-			if(nonNull(orderComponentStore.get(key)) && event.getHeader().getAction().equals(orderComponentStore.get(key).getHeader().getAction())
+			var keyWithAction = event.getHeader().getAction().name().concat(key);
+			var existingOrderComponentEvent = orderComponentStore.get(keyWithAction);
+			if(nonNull(existingOrderComponentEvent) && event.getHeader().getAction().equals(existingOrderComponentEvent.getHeader().getAction())
 					&& event.getHeader().getCreationTimestamp()
-					.isBefore(orderComponentStore.get(key).getHeader().getCreationTimestamp())) {
+					.isBefore(existingOrderComponentEvent.getHeader().getCreationTimestamp())) {
 				processingWrapper.setResponse(ModelBuilderUtils.buildFailureOrder(event, "Event timestamp incorrect.", UNKNOWN));
 				return processingWrapper;
 			}
@@ -146,7 +147,7 @@ public class StreamingConfig  extends KafkaConfig {
 			}
 
 			orderStore.put(key, processingWrapper.getResponse());
-			orderComponentStore.put(key, event);
+			orderComponentStore.put(keyWithAction, event);
 			return processingWrapper;
 		}
 

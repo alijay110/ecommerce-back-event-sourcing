@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModel;
 import org.immutables.value.Value;
 import pl.cba.gibcode.modelLibrary.brand.BasicBrandBodyFragment;
 import pl.cba.gibcode.modelLibrary.brand.ImmutableBasicBrandBody;
+import pl.cba.gibcode.modelLibrary.card.BasicCardBodyFragment;
 import pl.cba.gibcode.modelLibrary.ordercomponent.OrderComponentBody;
 
 import javax.validation.Valid;
@@ -18,6 +19,6 @@ import javax.validation.Valid;
 @JsonDeserialize(as = ImmutableCreatedOrderUuidBody.class)
 @JsonSerialize(as = ImmutableCreatedOrderUuidBody.class)
 @Value.Immutable
-public interface CreatedOrderUuidBody extends CreatedOrderUuidBodyFragment {
+public interface CreatedOrderUuidBody extends CreatedOrderUuidBodyFragment, BasicEntityFragment {
 
 }
