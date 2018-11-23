@@ -14,13 +14,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import pl.cba.gibcode.modelLibrary.brand.Brand;
 import pl.cba.gibcode.modelLibrary.config.CustomJsonSerde;
 import pl.cba.gibcode.modelLibrary.config.CustomJsonSerializer;
 import pl.cba.gibcode.modelLibrary.config.KafkaConfig;
+import pl.cba.gibcode.modelLibrary.model.JoinedCardWithOrder;
 import pl.cba.gibcode.modelLibrary.model.KafkaMessage;
 import pl.cba.gibcode.modelLibrary.model.Order;
 import pl.cba.gibcode.modelLibrary.query.QueryBrand;
+import pl.cba.gibcode.modelLibrary.query.QueryBuyerOrders;
+import pl.cba.gibcode.modelLibrary.query.QueryCardsByBrand;
+import pl.cba.gibcode.modelLibrary.query.QuerySellerOrders;
 
 import java.util.Map;
 
@@ -57,9 +60,10 @@ public class ComponentKafkaConfig extends KafkaConfig {
 
 	@Bean
 	public GlobalKTable<String, QueryBrand> globalBrandTable(StreamsBuilder builder) {
-		return builder.globalTable("queryBrand", CustomJsonSerde.consume(QueryBrand.class), Materialized.as("queryBrandStore"));
+		return builder.globalTable("queryBrand",
+				CustomJsonSerde.consume(QueryBrand.class),
+				Materialized.as("queryBrandStore"));
 	}
-
 
 	@Bean
 	@Lazy
@@ -72,5 +76,65 @@ public class ComponentKafkaConfig extends KafkaConfig {
 	@Bean
 	public GlobalKTable<String, Order> globalOrderTable(StreamsBuilder builder) {
 		return builder.globalTable("order", CustomJsonSerde.consume(Order.class), Materialized.as("orderStore"));
+	}
+
+	@Bean
+	@Lazy
+	public ReadOnlyKeyValueStore<String, QueryCardsByBrand> queryCardsByBrandStore(
+			KafkaStreams kafkaStreams,
+			GlobalKTable<String, QueryCardsByBrand> globalQueryCardsByBrand) {
+		return kafkaStreams.store(globalQueryCardsByBrand.queryableStoreName(), QueryableStoreTypes.keyValueStore());
+	}
+
+	@Bean
+	public GlobalKTable<String, QueryCardsByBrand> globalQueryCardsByBrand(StreamsBuilder builder) {
+		return builder.globalTable("queryCardsByBrand",
+				CustomJsonSerde.consume(QueryCardsByBrand.class),
+				Materialized.as("queryCardsByBrandStore"));
+	}
+
+	@Bean
+	@Lazy
+	public ReadOnlyKeyValueStore<String, JoinedCardWithOrder> joinedCardWithOrderStore(
+			KafkaStreams kafkaStreams,
+			GlobalKTable<String, JoinedCardWithOrder> globalJoinedCardWithOrder) {
+		return kafkaStreams.store(globalJoinedCardWithOrder.queryableStoreName(), QueryableStoreTypes.keyValueStore());
+	}
+
+	@Bean
+	public GlobalKTable<String, JoinedCardWithOrder> globalJoinedCardWithOrder(StreamsBuilder builder) {
+		return builder.globalTable("joinedCardWithOrder",
+				CustomJsonSerde.consume(JoinedCardWithOrder.class),
+				Materialized.as("joinedCardWithOrderStore"));
+	}
+
+	@Bean
+	@Lazy
+	public ReadOnlyKeyValueStore<String, QueryBuyerOrders> buyerOrderStore(
+			KafkaStreams kafkaStreams,
+			GlobalKTable<String, QueryBuyerOrders> globalBuyerOrder) {
+		return kafkaStreams.store(globalBuyerOrder.queryableStoreName(), QueryableStoreTypes.keyValueStore());
+	}
+
+	@Bean
+	public GlobalKTable<String, QueryBuyerOrders> globalBuyerOrder(StreamsBuilder builder) {
+		return builder.globalTable("buyerOrder",
+				CustomJsonSerde.consume(QueryBuyerOrders.class),
+				Materialized.as("buyerOrderStore"));
+	}
+
+	@Bean
+	@Lazy
+	public ReadOnlyKeyValueStore<String, QuerySellerOrders> sellerOrderStore(
+			KafkaStreams kafkaStreams,
+			GlobalKTable<String, QuerySellerOrders> globalSellerOrder) {
+		return kafkaStreams.store(globalSellerOrder.queryableStoreName(), QueryableStoreTypes.keyValueStore());
+	}
+
+	@Bean
+	public GlobalKTable<String, QuerySellerOrders> globalSellerOrder(StreamsBuilder builder) {
+		return builder.globalTable("sellerOrder",
+				CustomJsonSerde.consume(QuerySellerOrders.class),
+				Materialized.as("sellerOrderStore"));
 	}
 }

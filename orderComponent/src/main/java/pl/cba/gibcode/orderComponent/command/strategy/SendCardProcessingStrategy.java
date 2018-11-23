@@ -27,7 +27,9 @@ public class SendCardProcessingStrategy implements ProcessingStrategy, UpdateEnt
 		var processingWrapper = new ProcessingWrapper();
 		processingWrapper.setResponse(
 				getBuildSuccessOrderBuilder(event, getState())
-						.buyerId(event.getHeader().getUserId())
+						.buyerId(card.getBuyerId().orElseThrow(() -> {
+							throw new IllegalStateException("Buyer should be set during checkout!");
+						}))
 						.sellerId(card.getSellerId())
 						.build());
 		processingWrapper.setCard(ImmutableCard

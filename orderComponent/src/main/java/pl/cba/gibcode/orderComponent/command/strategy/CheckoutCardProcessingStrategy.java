@@ -30,6 +30,7 @@ public class CheckoutCardProcessingStrategy implements ProcessingStrategy, Updat
 				.builder()
 				.from(card)
 				.isAvailable(false)
+				.buyerId(event.getHeader().getUserId())
 				.lastEditedBy(event.getHeader().getUserId()).build());
 
 		processingWrapper.setResponse(

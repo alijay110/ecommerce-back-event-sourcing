@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModel;
 import org.immutables.value.Value;
 import pl.cba.gibcode.modelLibrary.model.EntityFragment;
 
+import java.util.Optional;
+
 @ApiModel(value = "Card", description = "The Card represents the state triggered by the CardEvents.")
 @JsonDeserialize(as = ImmutableCard.class)
 @JsonSerialize(as = ImmutableCard.class)
@@ -13,6 +15,8 @@ import pl.cba.gibcode.modelLibrary.model.EntityFragment;
 public interface Card extends EntityFragment, BasicCardBodyFragment, CardDetailsBodyFragment {
 
 	Long getSellerId();
+
+	Optional<Long> getBuyerId();
 
 	boolean getIsAvailable();
 }

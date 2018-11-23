@@ -16,4 +16,4 @@ start http://localhost:3030
 
 
 
-#./start-kafka.sh orderComponentEvent order brand card
+#$ ./restart-kafka.sh orderComponentEvent order brand card queryBrand queryCardsByBrand joinedCardWithOrder buyerOrder sellerOrder
