@@ -13,7 +13,6 @@ import pl.cba.gibcode.modelLibrary.brand.Brand;
 import pl.cba.gibcode.modelLibrary.card.Card;
 import pl.cba.gibcode.modelLibrary.config.CustomJsonSerde;
 import pl.cba.gibcode.modelLibrary.config.KafkaConfig;
-import pl.cba.gibcode.modelLibrary.model.EntityStateEnum;
 import pl.cba.gibcode.modelLibrary.model.Order;
 import pl.cba.gibcode.modelLibrary.ordercomponent.OrderComponentEvent;
 import pl.cba.gibcode.modelLibrary.ordercomponent.OrderType;
@@ -21,6 +20,7 @@ import pl.cba.gibcode.orderComponent.command.model.ModelBuilderUtils;
 import pl.cba.gibcode.orderComponent.command.model.ProcessingWrapper;
 import pl.cba.gibcode.orderComponent.command.service.StateMachine;
 import pl.cba.gibcode.orderComponent.command.strategy.ProcessingStrategyContext;
+import pl.cba.gibcode.orderComponent.query.QueryKafkaConfig;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
@@ -33,9 +33,12 @@ public class StreamingConfig  extends KafkaConfig {
 	private static final Logger logger = LoggerFactory.getLogger(StreamingConfig.class);
 
 	private final ProcessingStrategyContext processingStrategyContext;
-
-	public StreamingConfig(ProcessingStrategyContext processingStrategyContext) {
+	private final QueryKafkaConfig queryKafkaConfig;
+	public StreamingConfig(
+			ProcessingStrategyContext processingStrategyContext,
+			QueryKafkaConfig queryKafkaConfig) {
 		this.processingStrategyContext = processingStrategyContext;
+		this.queryKafkaConfig = queryKafkaConfig;
 	}
 
 	@Bean
@@ -67,7 +70,7 @@ public class StreamingConfig  extends KafkaConfig {
 				.filter(((s, card) -> nonNull(card)))
 				.peek((key, value) -> logger.info("card: {}: {}", key, value))
 				.to("card", CustomJsonSerde.produce(Card.class));
-
+		queryKafkaConfig.cardStream(streamsBuilder);
 		return orderComponentStream;
 	}
 

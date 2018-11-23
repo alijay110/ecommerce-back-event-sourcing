@@ -1,3 +1,4 @@
+/*
 package pl.cba.gibcode.apiQuery.web;
 
 import io.swagger.annotations.Api;
@@ -47,3 +48,4 @@ public class CardQueryController {
 		return ResponseEntity.ok(cardService.findAll(pageable, criteria));
 	}
 }
+*/

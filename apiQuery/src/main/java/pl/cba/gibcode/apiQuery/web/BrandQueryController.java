@@ -9,6 +9,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.cba.gibcode.apiQuery.model.BrandCriteriaDto;
+import pl.cba.gibcode.apiQuery.model.BrandResponseDto;
+import pl.cba.gibcode.apiQuery.service.BrandService;
+import pl.cba.gibcode.apiQuery.service.UserServiceDelegate;
+import pl.cba.gibcode.modelLibrary.model.UserType;
 
 @RestController
 @Api
@@ -16,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class BrandQueryController {
 
+	private final UserServiceDelegate userServiceDelegate;
+	private final BrandService brandService;
 
 	@ApiOperation(
 			value = "Get all brands for admin",
@@ -29,7 +36,7 @@ public class BrandQueryController {
 	@PostMapping("admin/brands")
 	public ResponseEntity<Page<BrandResponseDto>> getBrandBy(Pageable pageable, @RequestBody BrandCriteriaDto criteria, @RequestParam String username) {
 		//pretend validation for admin
-		userService.loginAsAdmin(username);
+		userServiceDelegate.login(username, UserType.ADMIN);
 		return ResponseEntity.ok(brandService.findAllForAdmin(pageable, criteria));
 	}
 
@@ -46,7 +53,7 @@ public class BrandQueryController {
 	})
 	@PostMapping("brands/list")
 	public ResponseEntity<Page<BrandResponseDto>> getBrandBy(Pageable pageable, @RequestBody BrandCriteriaDto criteria) {
-		return ResponseEntity.ok(brandService.findAll(pageable, criteria));
+		return ResponseEntity.ok(brandService.findAll(pageable,criteria));
 	}
 
 }

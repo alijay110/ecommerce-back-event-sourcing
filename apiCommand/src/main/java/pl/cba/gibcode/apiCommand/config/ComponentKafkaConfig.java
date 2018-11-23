@@ -45,19 +45,6 @@ public class ComponentKafkaConfig extends KafkaConfig {
 
 	@Bean
 	@Lazy
-	public ReadOnlyKeyValueStore<String, Order> orderStore(
-			KafkaStreams kafkaStreams,
-			GlobalKTable<String, Order> globalOrderTable) {
-		return kafkaStreams.store(globalOrderTable.queryableStoreName(), QueryableStoreTypes.keyValueStore());
-	}
-
-	@Bean
-	public GlobalKTable<String, Order> globalOrderTable(StreamsBuilder builder) {
-		return builder.globalTable("order", CustomJsonSerde.consume(Order.class), Materialized.as("orderStore"));
-	}
-
-	@Bean
-	@Lazy
 	public ReadOnlyKeyValueStore<String, Brand> brandStore(
 			KafkaStreams kafkaStreams,
 			GlobalKTable<String, Brand> globalBrandTable) {

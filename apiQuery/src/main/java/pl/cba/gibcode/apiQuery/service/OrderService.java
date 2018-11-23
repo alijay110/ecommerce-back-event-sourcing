@@ -1,4 +1,4 @@
-package pl.cba.gibcode.apiCommand.service;
+package pl.cba.gibcode.apiQuery.service;
 
 import org.apache.kafka.streams.state.ReadOnlyKeyValueStore;
 import org.springframework.stereotype.Service;
