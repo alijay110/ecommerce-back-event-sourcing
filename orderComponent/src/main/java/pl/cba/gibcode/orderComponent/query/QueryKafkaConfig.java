@@ -135,8 +135,8 @@ public class QueryKafkaConfig {
 
 		var queryCardsByBrand = brandKTable
 				.leftJoin(
-						cardAggregation
-						, (brand, cardWrapperAggregator) -> {
+						cardAggregation,
+						(brand, cardWrapperAggregator) -> {
 							logger.info("Left join {}, {}", brand, cardWrapperAggregator);
 							var cardsByBrand = ImmutableQueryCardsByBrand.builder().isDeleted(false);
 							if(brand.getDeleted()) {
@@ -187,8 +187,8 @@ public class QueryKafkaConfig {
 
 		var queryBrandStream = brandKTable
 				.leftJoin(
-						cardAggregation
-						, (brand, cardWrapperAggregator) -> {
+						cardAggregation,
+						(brand, cardWrapperAggregator) -> {
 							logger.info("Left join {}, {}", brand, cardWrapperAggregator);
 							var queryBrand = ImmutableQueryBrand.builder().brand(brand).isDeleted(false);
 							if(brand.getDeleted()) {
