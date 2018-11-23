@@ -1,6 +1,3 @@
-/*
- * C-Vault, @ 2018 Swisscom (Schweiz) AG
- */
 package pl.cba.gibcode.apiCommand;
 
 import org.apache.kafka.common.serialization.Serdes;

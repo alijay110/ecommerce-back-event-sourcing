@@ -1,6 +1,3 @@
-/*
- * C-Vault, @ 2018 Swisscom (Schweiz) AG
- */
 package pl.cba.gibcode.modelLibrary.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
