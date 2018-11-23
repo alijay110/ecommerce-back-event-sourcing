@@ -142,12 +142,10 @@ public class QueryKafkaConfig {
 							if(brand.getDeleted()) {
 								cardsByBrand.isAvailable(false);
 								cardsByBrand.isDeleted(true);
-								//cardsByBrand.cards(List.of());
 								return (QueryCardsByBrand) cardsByBrand.build();
 							}
 							if(isNull(cardWrapperAggregator) || cardWrapperAggregator.getEntries().isEmpty()) {
 								cardsByBrand.isAvailable(false);
-								//cardsByBrand.cards(List.of());
 							} else {
 								cardsByBrand.isAvailable(true);
 								cardsByBrand.cards(cardWrapperAggregator.getEntries().values().stream()
